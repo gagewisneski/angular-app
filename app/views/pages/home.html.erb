@@ -2,9 +2,23 @@
 
 <div ng-app="app">
   <div ng-controller="pageCtrl">
-    {{ message }}<br>
-    {{ hey }}<br>
-    {{ bye }}<br>
-    <input ng-model="bye">
+    <h3>Add your own message</h3>
+    Text: <input ng-model="newMessageText">
+    Rating: <input ng-model="newMessageRating">
+    Author: <input ng-model="newMessageAuthor">
+    <button ng-click="addMessage(newMessageText, newMessageRating, newMessageAuthor)">Add Message</button>
+    <br>
+    <br>
+    <br>
+    <div id="messages">
+      <div ng-repeat="message in messages track by $index" ng-click="clearMessage($index)" ng-if="isPositive(message.text)">
+        Text: {{ message.text }}<br>
+        Rating: {{ messaage.rating }}<br>
+        Author: {{ messaage.author }}<br>
+        <input ng-model="message.text">
+        <br>
+        <br>
+      </div>
+    </div>
   </div>
 </div>
