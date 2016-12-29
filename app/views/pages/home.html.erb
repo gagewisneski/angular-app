@@ -4,17 +4,15 @@
   <div ng-controller="pageCtrl">
     <h3>Add your own message</h3>
     Text: <input ng-model="newMessageText">
-    Rating: <input ng-model="newMessageRating">
-    Author: <input ng-model="newMessageAuthor">
-    <button ng-click="addMessage(newMessageText, newMessageRating, newMessageAuthor)">Add Message</button>
+    <button ng-click="addMessage(newMessageText)">Add Message</button>
+    <button ng-click="removeMessages()">Remove Message</button>
     <br>
     <br>
     <br>
     <div id="messages">
-      <div ng-repeat="message in messages track by $index" ng-click="clearMessage($index)" ng-if="isPositive(message.text)">
+      Incomplete messages: {{ incompleteMessages.length }}
+      <div ng-repeat="message in messages track by $index" ng-click="completedMessage(message)" ng-class="{ 'completed': message.completed }">
         Text: {{ message.text }}<br>
-        Rating: {{ messaage.rating }}<br>
-        Author: {{ messaage.author }}<br>
         <input ng-model="message.text">
         <br>
         <br>

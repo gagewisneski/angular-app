@@ -3,51 +3,42 @@
 
   angular.module("app").controller("pageCtrl", function($scope) {
 
-    $scope.message = "Hello!";
-    $scope.hey = "Hey!";
-    $scope.hola = "Hola!";
-    $scope.bye = "Bye!";
-
-    // $scope.messages = ["Hello!", "Hey!", "Hola!", "Bye!"];
-
     $scope.messages = [
       {
         text: "Hello!",
-        rating: 5,
-        author: "Me"
+        completed: false
       },
       {
         text: "Hey!",
-        rating: 4,
-        author: "You"
+        completed: false
       },
       {
         text: "Hola!",
-        rating: 3,
-        author: "Them"
+        completed: false
       }
     ];
 
-
-    $scope.addMessage = function(text, rating, author) {
-      if (text && rating && author) {
+    $scope.addMessage = function(text) {
+      if (text) {
         var message = {
           text: text,
-          rating: rating,
-          author: author
+          completed: false
         };
         $scope.messages.push(message);
         $scope.newMessageText = null;
-        $scope.newMessageRating = null;
-        $scope.newMessageAuthor = null;
       }
     }
 
-    $scope.clearMessage = function(index) {
-      $scope.messages.splice(index, 1);
+    $scope.completedMessage = function(message) {
+      message.completed = !message.completed;
+      $scope.isIncomplete();
     }
 
-    $scope.isPositive = function(message) {
+    // $scope.clearMessage = function(index) {
+    //   $scope.messages.splice(index, 1);
+    // }
+
+    // $scope.isPositive = function(message) {
       // if (message.indexOf("bad") == -1) {
       //   return true;
       // }
@@ -55,14 +46,39 @@
       //   return false;
       // }
 
-      return (message.indexOf("bad") == -1);
+    //   return (message.indexOf("bad") == -1);
+    // }
+
+    $scope.incompleteMessages = $scope.messages;
+
+    $scope.isIncomplete = function() {
+      $scope.incompleteMessages = [];
+      for (var i = 0; i < $scope.messages.length; i++) {
+        var message = $scope.messages[i];
+
+        if (message.completed === false) {
+          $scope.incompleteMessages.push(message);
+        }
+      }
     }
+
+    $scope.removeMessages = function() {
+      $scope.incomplete = []
+      for (var i = 0; i < $scope.messages.length; i++) {
+        var message = $scope.messages[i];
+
+        if (message.completed === false) {
+          $scope.incomplete.push(message);
+        }
+      }
+      $scope.messages = $scope.incomplete;
+    }
+
+
 
 
     window.$scope = $scope;
 
   });
-
-
 
 })();
