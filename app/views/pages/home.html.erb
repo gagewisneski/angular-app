@@ -1,19 +1,19 @@
-<h1>Angular</h1>
+<h1>Angular Tasks</h1>
 
 <div ng-app="app">
   <div ng-controller="pageCtrl">
-    <h3>Add your own message</h3>
-    Text: <input ng-model="newMessageText">
-    <button ng-click="addMessage(newMessageText)">Add Message</button>
-    <button ng-click="removeMessages()">Remove Message</button>
+    <h3>Add your own tasks</h3>
+    Text: <input ng-model="newTaskText">
+    <button ng-click="addTask(newTaskText)">Add Task</button>
+    <button ng-click="removeTasks()">Remove Task</button>
     <br>
     <br>
     <br>
-    <div id="messages">
-      Incomplete messages: {{ incompleteMessages.length }}
-      <div ng-repeat="message in messages track by $index" ng-click="completedMessage(message)" ng-class="{ 'completed': message.completed }">
-        Text: {{ message.text }}<br>
-        <input ng-model="message.text">
+    <div id="tasks">
+      Incomplete tasks: {{ incompleteTasks.length }}
+      <div ng-repeat="task in tasks track by $index" ng-click="completedTask(task)" ng-class="{ 'completed': task.completed }">
+        Text: {{ task.text }}<br>
+        <input ng-model="task.text">
         <br>
         <br>
       </div>

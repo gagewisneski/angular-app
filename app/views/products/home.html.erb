@@ -1,0 +1,30 @@
+<h1>Angular Products</h1>
+
+<div ng-app="app">
+  <div ng-controller="productCtrl">
+    <div id="products">
+      <h2>Products</h2>
+      <div ng-repeat="product in products" ng-click="priceAdd(product)">
+        Product: {{ product.name }}<br>
+        Price: {{ product.price }}<br>
+        ====================<br>
+        <br>
+        <br>
+      </div>
+    </div>
+
+    <div id="carted-products">
+      <h2>Carted Products</h2>
+      <div ng-repeat="cartedProduct in cartedProducts track by $index" ng-click="priceSub(cartedProduct, $index)">
+        Product: {{ cartedProduct.name }}<br>
+        Price: {{ cartedProduct.price }}<br>
+        ====================<br>
+        <br>
+        <br>
+      </div>
+      <h4>Total: {{ total }}</h4>
+      <h4>Tax: {{ tax }}</h4>
+      <h4>Subtotal: {{ subtotal }}</h4>
+    </div>
+  </div>
+</div>

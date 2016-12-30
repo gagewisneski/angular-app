@@ -3,7 +3,7 @@
 
   angular.module("app").controller("pageCtrl", function($scope) {
 
-    $scope.messages = [
+    $scope.tasks = [
       {
         text: "Hello!",
         completed: false
@@ -18,63 +18,61 @@
       }
     ];
 
-    $scope.addMessage = function(text) {
+    $scope.addTask = function(text) {
       if (text) {
-        var message = {
+        var task = {
           text: text,
           completed: false
         };
-        $scope.messages.push(message);
-        $scope.newMessageText = null;
+        $scope.tasks.push(task);
+        $scope.newTaskText = null;
       }
     }
 
-    $scope.completedMessage = function(message) {
-      message.completed = !message.completed;
+    $scope.completedTask = function(task) {
+      task.completed = !task.completed;
       $scope.isIncomplete();
     }
 
-    // $scope.clearMessage = function(index) {
-    //   $scope.messages.splice(index, 1);
+    // $scope.clearTask = function(index) {
+    //   $scope.tasks.splice(index, 1);
     // }
 
-    // $scope.isPositive = function(message) {
-      // if (message.indexOf("bad") == -1) {
+    // $scope.isPositive = function(task) {
+      // if (task.indexOf("bad") == -1) {
       //   return true;
       // }
       // else {
       //   return false;
       // }
 
-    //   return (message.indexOf("bad") == -1);
+    //   return (task.indexOf("bad") == -1);
     // }
 
-    $scope.incompleteMessages = $scope.messages;
+    $scope.incompleteTasks = $scope.task;
 
     $scope.isIncomplete = function() {
-      $scope.incompleteMessages = [];
-      for (var i = 0; i < $scope.messages.length; i++) {
-        var message = $scope.messages[i];
+      $scope.incompleteTasks = [];
+      for (var i = 0; i < $scope.tasks.length; i++) {
+        var task = $scope.tasks[i];
 
-        if (message.completed === false) {
-          $scope.incompleteMessages.push(message);
+        if (task.completed === false) {
+          $scope.incompleteTasks.push(task);
         }
       }
     }
 
-    $scope.removeMessages = function() {
+    $scope.removeTasks = function() {
       $scope.incomplete = []
-      for (var i = 0; i < $scope.messages.length; i++) {
-        var message = $scope.messages[i];
+      for (var i = 0; i < $scope.tasks.length; i++) {
+        var task = $scope.tasks[i];
 
-        if (message.completed === false) {
-          $scope.incomplete.push(message);
+        if (task.completed === false) {
+          $scope.incomplete.push(task);
         }
       }
-      $scope.messages = $scope.incomplete;
+      $scope.tasks = $scope.incomplete;
     }
-
-
 
 
     window.$scope = $scope;
